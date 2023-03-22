@@ -55,7 +55,7 @@ suspend fun main() {
     )
 
     val siu: HttpResponse = client.submitForm(
-        url = "http://192.168.111.120/system/ntp",
+        url = "http://192.168.1.1/system/ntp",
         formParameters = Parameters.build {
             append("ntp", "true")
         }
@@ -64,7 +64,7 @@ suspend fun main() {
         }//This variable is patching x-www-form-urlencoded body request from the server. As an example ntp is used.
 
     // Our main examination is this. This request gets plate results with count parameter. Our count is 2 in example.
-    val resp = client.get("http://192.168.111.120/text/results-with-images/2").body<SnapshotResponse>()
+    val resp = client.get("http://192.168.1.1/text/results-with-images/2").body<SnapshotResponse>()
 
     resp.results.forEachIndexed { i, it ->
         val b64data = it.image.data //Gets the output image data in Base64 encoded form.
